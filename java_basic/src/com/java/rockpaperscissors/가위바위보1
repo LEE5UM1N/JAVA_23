@@ -1,0 +1,58 @@
+package com.java.quiz;
+
+import java.util.Scanner;
+
+public class RockPaperScissors {
+
+	public static void main(String[] args) {
+		
+		//입력
+		String input=" ";
+		int computer = (int)(Math.random()*3+1);
+		Scanner scan = new Scanner(System.in);
+		int me=0;
+		int save=0;
+		
+		String start = "안녕하세요. 지금부터 가위바위보 게임을 시작하겠습니다.\n"
+				+ "'주먹, 가위, 보' 중에 하나를 입력해주세요.";
+		String gogo = " ";
+		input=scan.next();
+		
+		System.out.print(start); 
+
+		//처리
+		for(;true;) {
+			if(input!="주먹"||input!="가위"||input!="보") {
+				gogo = "잘못된 값을 입력하셨습니다. '주먹, 가위, 보' 중에 하나를 입력해주세요.";
+			}
+			else if(input=="주먹") {
+				me=1;
+				if(computer==1)save=me;
+				else if(computer==2)save=me-1;
+				else if(computer==3)save=me+1;
+			}
+			else if(input=="가위") {
+				me=1;
+				if(computer==1)save=me+1;
+				else if(computer==2)save=me;
+				else if(computer==3)save=me-1;
+			}
+			else if(input=="보") {
+				me=1;
+				if(computer==1)save=me-1;
+				else if(computer==2)save=me+1;
+				else if(computer==3)save=me;
+			}
+			
+			if(me==save) gogo="비겼습니다. 다시 하려면 '주먹, 가위, 보' 중에 하나를 입력해주세요.";
+			else if(me>save) gogo="이겼습니다. 다시 하려면 '주먹, 가위, 보' 중에 하나를 입력해주세요.";
+			else if(me<save) gogo="졌습니다. 다시 하려면 '주먹, 가위, 보' 중에 하나를 입력해주세요.";
+			
+			//출력
+			System.out.print(gogo); 
+			input=scan.next();
+		}
+
+	}
+
+}
