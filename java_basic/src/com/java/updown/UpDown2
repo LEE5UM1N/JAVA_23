@@ -1,0 +1,79 @@
+package com.java.quiz;
+
+import java.util.Scanner;
+
+public class UpDown {
+
+	public static void main(String[] args) {
+		
+		//입력
+		int input=0;
+		int again=121;
+		int min=1;
+		int max=100;
+		int random = (int)(Math.random()*100+1);
+		int count=1;
+		String start = "******** 업다운 게임 ********\n\n\n"
+				+
+				"컴퓨터는 숫자를 결정했습니다."
+				+ "시작하겠습니다.\n\n"
+				+ "1부터 100사이의 숫자를 입력하세요.\n";
+		String notfinish = "게임을 계속 진행합니다.\n\n\n"
+				+ "컴퓨터는 숫자를 결정했습니다."
+				+ "시작하겠습니다.\n\n"
+				+ "1부터 100사이의 숫자를 입력하세요.\n";
+		String finish = "게임을 종료합니다.\n";
+		String gogo = " ";
+		Scanner scan = new Scanner(System.in);
+		Scanner scann = new Scanner(System.in);
+
+		System.out.print(start);
+		input=scan.nextInt();
+		
+		for(;(int)again==121;) {
+			
+			//처리
+			if(input==random) {
+				gogo = "\n축하합니다. 정답입니다.\n"+ count + "번째 맞췄습니다.\n\n\n게임을 종료하시겠습니까? (y/n)\n";
+			}
+			else if(input>max||input<min){
+				gogo = "\n입력이 올바르지 않습니다.\n"+ min +"부터 "+ max +"사이의 숫자를 입력하세요.\n";
+				count++;
+			}
+			//업
+			else if(input<random) {
+				min=input+1;
+				count++;
+				gogo = "\n업!!!\n"+ min +"부터 " + max +"사이의 숫자를 입력하세요.\n";
+			}
+			//다운
+			else if(input>random) {
+				max=input-1;
+				count++;
+				gogo = "\n다운!!!\n"+ min +"부터 " + max +"사이의 숫자를 입력하세요.\n";
+			}
+
+			
+			//출력
+			if(input==random) {
+				System.out.print(gogo);
+				again=scann.nextInt();
+				if((char)again=='y') {
+					System.exit(0);//프로그램 종료로 바꿔야함
+				}
+				else if((char)again!='n'){
+					System.out.print(notfinish);
+					min=1;
+					max=100;
+					count=0;
+				}
+			}
+			
+			System.out.print(gogo);
+			input=scan.nextInt();
+
+		}
+		
+	}
+
+}
