@@ -1,0 +1,74 @@
+package com.java.array;
+
+import java.util.Scanner;
+
+public class SumAvgGuhagi {
+	
+		
+	public static void main(String[] args) {		
+		
+		Scanner scan = new Scanner(System.in);
+		
+		int x=0;
+		int y=1;
+		
+		System.out.print("학생 수를 입력: ");
+		x=scan.nextInt();
+		
+		//입력
+		int[] num = new int[x];
+		String[] name = new String[x];
+		int[] kor= new int[x];
+		int[] eng = new int[x];
+		int[] math= new int[x];
+		int[] scien= new int[x];
+		String[] label= {"번호", "이름", "국어", "영어", "수학", "과학", "총점", "평균"};
+		
+		int[] total=new int[x];
+		float[] avg=new float[x];
+		
+		//넘버링
+		for(int i=0;i<num.length;i++) {
+			num[i]=y;
+			y++;			
+		}
+		
+		//학생이름, 성적 입력
+		for(int i=0;i<num.length;i++) {
+			System.out.printf("학생 %d번의 성적 data를 입력하시오.", num[i]);
+			System.out.println();
+			System.out.printf("학생 %d번 이름: ", num[i]);
+			name[i]=scan.nextLine();
+			name[i]=scan.nextLine();
+			System.out.printf("학생 %d번 국어점수: ", num[i]);
+			kor[i]=scan.nextInt();
+			System.out.printf("학생 %d번 영어점수: ", num[i]);
+			eng[i]=scan.nextInt();
+			System.out.printf("학생 %d번 수학점수: ", num[i]);
+			math[i]=scan.nextInt();
+			System.out.printf("학생 %d번 과학점수: ", num[i]);
+			scien[i]=scan.nextInt();			
+		}
+		
+		//처리
+		for(int i=0;i<num.length;i++) {
+			total[i]=(kor[i]+eng[i]+math[i]+scien[i])*10;
+			avg[i]=(total[i]/4)/10f;
+			total[i]=total[i]/10;
+		}
+		
+		//출력
+		for(int i=0;i<label.length;i++) {
+			System.out.printf("%s\t", label[i]);
+		}
+		
+		System.out.println();
+
+		for(int i=0;i<num.length;i++) {
+			System.out.printf("%d\t%s\t%d\t%d\t%d\t%d\t%d\t%f\n",
+					num[i], name[i], kor[i], eng[i], math[i], scien[i], total[i], avg[i]);
+		}
+		
+	}
+
+}
