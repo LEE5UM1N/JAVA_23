@@ -1,0 +1,114 @@
+import java.util.Scanner;
+
+public class ArrayTest {
+	
+	public static void main(String[] args) {
+			
+			
+			//선언
+			String[] label1= {"번호","이름"};
+			String[] label3={"총점","평균"};
+			int[] num;
+			String[] name;
+			// 일차원배열 : int[] kor,eng,math,scien;
+			int[][] score;
+			int[] total;
+			float[] avg;
+			
+			final int STUDENT_NUM;
+			final int SCORE_NUM;
+			
+			Scanner scann = new Scanner(System.in);
+			
+			//입력
+			System.out.print("학생 수를 입력 : ");
+			STUDENT_NUM = scann.nextInt();scann.nextLine();
+			System.out.print("평가 과목수 : ");
+			SCORE_NUM = scann.nextInt();scann.nextLine();
+			String[] label2=new String[SCORE_NUM];
+			
+			System.out.println();
+			
+			for(int i=0;i<SCORE_NUM;i++) {
+				System.out.printf("%d번 과목명:", i+1);
+				label2[i]=scann.nextLine();
+				for(int x=0;x<i+1;x++) {
+					System.out.printf("%d.%s ", x+1, label2[x]);
+				}
+				System.out.println();
+			}
+			
+			//변수 초기화
+			num=new int[STUDENT_NUM];
+			name=new String[STUDENT_NUM];
+			
+	//		kor=new int[STUDENT_NUM];
+	//		eng=new int[STUDENT_NUM];
+	//		math=new int[STUDENT_NUM];
+	//		scien=new int[STUDENT_NUM];
+			
+			score = new int[SCORE_NUM][STUDENT_NUM];
+			
+			total=new int[STUDENT_NUM];
+			avg=new float[STUDENT_NUM];
+			
+			System.out.println("---------------------------------------------------------------");
+
+			//처리
+					/*
+					 * for(int i=0;i<STUDENT_NUM;i++) { total[i] =
+					 * (kor[i]+eng[i]+math[i]+scien[i])*10; avg[i] = (total[i]/4)/10f; }
+					 */
+			
+			for(int i=0;i<STUDENT_NUM;i++) {
+				num[i]=i+1;
+				System.out.printf("학생 %d번의 성적 data를 입력하시오.\n",num[i]);
+				System.out.printf("학생 %d번 이름 : ",num[i]);
+				name[i]=scann.nextLine();
+				
+				for(int scoreNum= 0 ; scoreNum<SCORE_NUM;scoreNum++) {
+					System.out.printf("학생 %d번 %s점수 : ",num[i],label2[i]);
+					score[scoreNum][i]=scann.nextInt();scann.nextLine();
+				}
+				System.out.println();
+			}
+			
+			
+			for(int i=0;i<STUDENT_NUM;i++) {
+				for(int scoreNum= 0 ; scoreNum<SCORE_NUM;scoreNum++) {
+					 total[i]=total[i]+score[scoreNum][i];
+				}
+				total[i] = total[i]*10;
+				avg[i] = (total[i]/(float)SCORE_NUM)/10f;
+			}
+			
+			
+			System.out.println("---------------------------------------------------------------");
+
+			 
+			//출력
+			//label 반복문
+			for(int i=0;i<label1.length;i++) {
+				System.out.printf("%s\t",label1[i]);
+			}
+			for(int x=0;x<SCORE_NUM;x++) {
+				System.out.printf("%s\t", label2[x]);
+			}
+			for(int i=0;i<label3.length;i++) {
+				System.out.printf("%s\t",label3[i]);
+			}
+			
+			System.out.println();
+			
+			
+			//data 반복문
+			for(int i=0;i<STUDENT_NUM;i++) {
+				System.out.printf("%d\t%s",num[i],name[i]);
+				for(int scoreNum= 0 ; scoreNum<SCORE_NUM;scoreNum++) {
+					System.out.printf("\t%d",score[scoreNum][i]);				
+				}
+				System.out.printf("\t%d\t%f\n", total[i]/10,avg[i]);
+			}
+		}
+
+}
